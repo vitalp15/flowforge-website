@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -666,8 +666,36 @@ body.en .faq-trigger.rtl-row { flex-direction:row; }
   text-decoration:none; transition:all 0.25s;
   white-space:nowrap;
 }
-@media(max-width:400px){
-  .btn-wa, .btn-tg, .btn-mail { padding:0.8rem 1.2rem; font-size:0.85rem; }
+/* ═══════════════════════════════════════
+   MOBILE SPACING FIXES
+═══════════════════════════════════════ */
+@media(max-width:640px) {
+  .h2 { font-size: clamp(1.4rem, 7vw, 2rem); line-height: 1.2; margin-bottom: 0.6rem; }
+  .hero-title { font-size: clamp(1.8rem, 8vw, 2.8rem); line-height: 1.15; margin-bottom: 1rem; }
+  .section { padding: 3rem 1.2rem; }
+  .section-header { margin-bottom: 1.8rem; }
+  .lead { font-size: 0.88rem; }
+  .prob-card h3, .svc-card h3, .wf-card h3 { font-size: 0.9rem; line-height: 1.4; }
+  .trust-row { gap: 0.8rem; padding: 1rem; }
+  .trust-divider { display: none; }
+  .trust-item { flex-direction: column; text-align: center; }
+  .proc-item { gap: 1rem; }
+  .proc-content { padding: 1rem; }
+  .price-card { padding: 1.4rem 1.2rem; }
+  .compare-table th, .compare-table td { padding: 0.65rem 0.8rem; font-size: 0.78rem; }
+  .about-inner { gap: 1.5rem; }
+  .results-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 1.2rem 1rem; }
+  .rc-num { font-size: 1.6rem; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .wf-grid { grid-template-columns: 1fr; }
+  .hero-sub { font-size: 0.85rem; }
+  .chip { font-size: 0.68rem; }
+  .cta-final { padding: 3rem 1.2rem; }
+  .contact-row { flex-direction: column; align-items: stretch; }
+  .contact-row a { text-align: center; justify-content: center; }
+  .pricing-grid { grid-template-columns: 1fr; }
+}
 }
 .btn-wa { background:#22c55e; color:white; }
 .btn-wa:hover { background:#16a34a; transform:translateY(-2px); box-shadow:0 10px 25px rgba(34,197,94,0.35); }
@@ -755,14 +783,20 @@ footer { background:var(--bg2); border-top:1px solid var(--border); padding:2.5r
 /* ═══════════════════════════════════════
    LANGUAGE & REVEAL
 ═══════════════════════════════════════ */
-.ar-t { display:block; }
-.en-t { display:none; }
-body.en .ar-t { display:none; }
-body.en .en-t { display:block; }
-span.ar-t { display:inline; }
-span.en-t { display:none; }
-body.en span.ar-t { display:none; }
-body.en span.en-t { display:inline; }
+/* ═══════════════════════════════════════
+   LANGUAGE SYSTEM
+═══════════════════════════════════════ */
+/* Default: Arabic visible, English hidden */
+.en-t { display: none !important; }
+.ar-t { display: block; }
+span.ar-t { display: inline; }
+span.en-t { display: none !important; }
+
+/* English mode: flip everything */
+body.en .ar-t { display: none !important; }
+body.en .en-t { display: block !important; }
+body.en span.ar-t { display: none !important; }
+body.en span.en-t { display: inline !important; }
 
 .reveal { opacity:1; transform:translateY(0); transition:opacity 0.7s ease, transform 0.7s ease; }
 .reveal.animate-on-scroll { opacity:0; transform:translateY(28px); }
@@ -834,6 +868,26 @@ body.en span.en-t { display:inline; }
 }
 @media(min-width:640px){ .wf-grid { grid-template-columns: 1fr 1fr; } }
 @media(min-width:1024px){ .wf-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+/* n8n Canvas Preview */
+.wf-preview {
+  width: 100%; height: 130px;
+  background: #1a1f2e;
+  border-radius: 10px;
+  margin-bottom: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.wf-preview::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.wf-preview svg { width: 100%; height: 100%; position: relative; z-index: 1; }
 .wf-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -1558,6 +1612,37 @@ body.en .back-top { left: auto; right: 2rem; }
         <div class="wf-icon" style="background:rgba(249,115,22,0.12);">📥</div>
         <span class="wf-badge popular"><span class="ar-t">الأكثر طلباً</span><span class="en-t">Popular</span></span>
       </div>
+      <!-- n8n Preview -->
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Connections -->
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 65 C 206 65, 211 65, 234 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 294 55 C 310 45, 315 35, 318 28" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 294 75 C 310 85, 315 95, 318 100" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Webhook Node -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#f97316" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#f97316" font-size="10" font-family="monospace">🌐</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Webhook</text>
+          <!-- OpenAI Node -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="148" y="62" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="monospace">🤖</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">OpenAI</text>
+          <!-- IF Node -->
+          <rect x="234" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="264" y="62" text-anchor="middle" fill="#38bdf8" font-size="10" font-family="monospace">⚡</text>
+          <text x="264" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">IF Node</text>
+          <!-- Gmail -->
+          <rect x="306" y="12" width="26" height="26" rx="6" fill="#1e2d3d" stroke="#f87171" stroke-width="1.2"/>
+          <text x="319" y="28" text-anchor="middle" fill="#f87171" font-size="9">📧</text>
+          <!-- Airtable -->
+          <rect x="306" y="88" width="26" height="26" rx="6" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.2"/>
+          <text x="319" y="104" text-anchor="middle" fill="#4ade80" font-size="9">📊</text>
+          <!-- Active dot -->
+          <circle cx="40" cy="47" r="4" fill="#f97316" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#f97316" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
       <h3 class="ar-t">ردود تلقائية على استفسارات العملاء</h3>
       <h3 class="en-t">Auto-Reply to Client Inquiries</h3>
       <p class="ar-t">يستقبل الرسائل الواردة من نموذج الاتصال، يُحللها بالذكاء الاصطناعي، ويُرسل رداً مخصصاً فورياً ويُسجِّل العميل في CRM.</p>
@@ -1579,6 +1664,34 @@ body.en .back-top { left: auto; right: 2rem; }
         <div class="wf-icon" style="background:rgba(56,189,248,0.12);">📅</div>
         <span class="wf-badge new"><span class="ar-t">جديد</span><span class="en-t">New</span></span>
       </div>
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 55 C 200 45, 210 35, 228 28" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 178 65 C 206 65, 211 65, 228 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 178 75 C 200 85, 210 95, 228 100" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Trigger -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#38bdf8" font-size="10">📅</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Trigger</text>
+          <!-- Router -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="148" y="62" text-anchor="middle" fill="#a78bfa" font-size="10">🔀</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Router</text>
+          <!-- GCal -->
+          <rect x="228" y="12" width="44" height="28" rx="7" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.2"/>
+          <text x="250" y="24" text-anchor="middle" fill="#38bdf8" font-size="8">📆 GCal</text>
+          <!-- Telegram -->
+          <rect x="228" y="51" width="44" height="28" rx="7" fill="#1e2d3d" stroke="#f97316" stroke-width="1.2"/>
+          <text x="250" y="63" text-anchor="middle" fill="#f97316" font-size="8">✈️ TG</text>
+          <!-- Wait -->
+          <rect x="228" y="90" width="44" height="28" rx="7" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.2"/>
+          <text x="250" y="102" text-anchor="middle" fill="#4ade80" font-size="8">⏱ Wait</text>
+          <!-- Active dot -->
+          <circle cx="40" cy="47" r="4" fill="#38bdf8" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
       <h3 class="ar-t">نظام حجز ذكي مع تذكيرات</h3>
       <h3 class="en-t">Smart Booking with Reminders</h3>
       <p class="ar-t">يُدير المواعيد تلقائياً، يُرسل تذكيرات قبل الموعد بـ 24 ساعة وساعة، ويُحدِّث تقويم جوجل لحظياً دون أي تدخل.</p>
@@ -1599,6 +1712,33 @@ body.en .back-top { left: auto; right: 2rem; }
         <div class="wf-icon" style="background:rgba(139,92,246,0.12);">🛒</div>
         <span class="wf-badge free"><span class="ar-t">مجاني</span><span class="en-t">Free</span></span>
       </div>
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#a78bfa" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 65 C 206 65, 211 65, 234 65" stroke="#a78bfa" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 294 65 C 310 65, 315 65, 318 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Shopify -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#4ade80" font-size="10">🛒</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Shopify</text>
+          <!-- Wait 24h -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="148" y="62" text-anchor="middle" fill="#a78bfa" font-size="10">⏳</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Wait 24h</text>
+          <!-- Check -->
+          <rect x="234" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#f97316" stroke-width="1.5"/>
+          <text x="264" y="62" text-anchor="middle" fill="#f97316" font-size="10">🔍</text>
+          <text x="264" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Check</text>
+          <!-- Gmail -->
+          <rect x="306" y="51" width="26" height="26" rx="6" fill="#1e2d3d" stroke="#f87171" stroke-width="1.2"/>
+          <text x="319" y="67" text-anchor="middle" fill="#f87171" font-size="9">📧</text>
+          <!-- Active dot -->
+          <circle cx="40" cy="47" r="4" fill="#4ade80" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#4ade80" stroke-width="1" opacity="0.4"/>
+          <!-- Loop arrow -->
+          <path d="M 294 83 Q 310 110 270 110 Q 230 110 230 83" stroke="#a78bfa" stroke-width="1" fill="none" opacity="0.3" stroke-dasharray="3,3"/>
+        </svg>
+      </div>
       <h3 class="ar-t">متابعة السلة المتروكة</h3>
       <h3 class="en-t">Abandoned Cart Follow-up</h3>
       <p class="ar-t">يرصد العملاء الذين أضافوا منتجات ولم يكملوا الشراء، ويُرسل سلسلة رسائل متابعة تلقائية لاسترداد المبيعات الضائعة.</p>
@@ -1618,6 +1758,34 @@ body.en .back-top { left: auto; right: 2rem; }
       <div class="wf-header">
         <div class="wf-icon" style="background:rgba(34,197,94,0.12);">📊</div>
         <span class="wf-badge popular"><span class="ar-t">الأكثر طلباً</span><span class="en-t">Popular</span></span>
+      </div>
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 65 C 206 65, 211 65, 234 65" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 294 55 C 310 45, 315 35, 318 30" stroke="#a78bfa" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 294 75 C 310 85, 315 95, 318 98" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Schedule -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#4ade80" font-size="10">🕐</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Schedule</text>
+          <!-- GSheets -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="148" y="62" text-anchor="middle" fill="#38bdf8" font-size="10">📊</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">GSheets</text>
+          <!-- OpenAI -->
+          <rect x="234" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="264" y="62" text-anchor="middle" fill="#a78bfa" font-size="10">🤖</text>
+          <text x="264" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">OpenAI</text>
+          <!-- Gmail -->
+          <rect x="306" y="15" width="26" height="26" rx="6" fill="#1e2d3d" stroke="#f87171" stroke-width="1.2"/>
+          <text x="319" y="31" text-anchor="middle" fill="#f87171" font-size="9">📧</text>
+          <!-- Notion -->
+          <rect x="306" y="85" width="26" height="26" rx="6" fill="#1e2d3d" stroke="#f97316" stroke-width="1.2"/>
+          <text x="319" y="101" text-anchor="middle" fill="#f97316" font-size="9">📝</text>
+          <circle cx="40" cy="47" r="4" fill="#4ade80" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#4ade80" stroke-width="1" opacity="0.4"/>
+        </svg>
       </div>
       <h3 class="ar-t">تقارير أداء أسبوعية تلقائية</h3>
       <h3 class="en-t">Automated Weekly Performance Reports</h3>
@@ -1640,6 +1808,38 @@ body.en .back-top { left: auto; right: 2rem; }
         <div class="wf-icon" style="background:rgba(249,115,22,0.12);">📱</div>
         <span class="wf-badge new"><span class="ar-t">جديد</span><span class="en-t">New</span></span>
       </div>
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 65 C 206 65, 211 65, 234 65" stroke="#f97316" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 294 50 C 308 38, 312 30, 316 24" stroke="#e879f9" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 294 65 C 310 65, 313 65, 316 65" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 294 80 C 308 92, 312 100, 316 104" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Schedule -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#f97316" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#f97316" font-size="10">🕐</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Schedule</text>
+          <!-- OpenAI -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="148" y="62" text-anchor="middle" fill="#a78bfa" font-size="10">🤖</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">GPT-4o</text>
+          <!-- Split -->
+          <rect x="234" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="264" y="62" text-anchor="middle" fill="#38bdf8" font-size="10">🔀</text>
+          <text x="264" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Split</text>
+          <!-- Instagram -->
+          <rect x="304" y="10" width="28" height="24" rx="6" fill="#1e2d3d" stroke="#e879f9" stroke-width="1.2"/>
+          <text x="318" y="25" text-anchor="middle" fill="#e879f9" font-size="7.5">📸 IG</text>
+          <!-- Facebook -->
+          <rect x="304" y="53" width="28" height="24" rx="6" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.2"/>
+          <text x="318" y="68" text-anchor="middle" fill="#38bdf8" font-size="7.5">👍 FB</text>
+          <!-- Twitter -->
+          <rect x="304" y="96" width="28" height="24" rx="6" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.2"/>
+          <text x="318" y="111" text-anchor="middle" fill="#4ade80" font-size="7.5">🐦 X</text>
+          <circle cx="40" cy="47" r="4" fill="#f97316" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#f97316" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
       <h3 class="ar-t">جدولة منشورات السوشل ميديا</h3>
       <h3 class="en-t">Social Media Post Scheduler</h3>
       <p class="ar-t">يُنشئ محتوى منشورات بالذكاء الاصطناعي بناءً على موضوع تختاره، يُجدوله في أوقات الذروة، وينشره تلقائياً على عدة منصات.</p>
@@ -1660,6 +1860,31 @@ body.en .back-top { left: auto; right: 2rem; }
       <div class="wf-header">
         <div class="wf-icon" style="background:rgba(56,189,248,0.12);">🔔</div>
         <span class="wf-badge free"><span class="ar-t">مجاني</span><span class="en-t">Free</span></span>
+      </div>
+      <div class="wf-preview">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 62 65 C 90 65, 95 65, 118 65" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 178 55 C 204 45, 210 38, 228 32" stroke="#f87171" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M 178 75 C 204 85, 210 92, 228 96" stroke="#4ade80" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <!-- Shopify -->
+          <rect x="18" y="47" width="44" height="36" rx="8" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="40" y="62" text-anchor="middle" fill="#4ade80" font-size="10">🛒</text>
+          <text x="40" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">Shopify</text>
+          <!-- IF Low Stock -->
+          <rect x="118" y="47" width="60" height="36" rx="8" fill="#1e2d3d" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="148" y="60" text-anchor="middle" fill="#38bdf8" font-size="9">⚠️ Low?</text>
+          <text x="148" y="75" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">IF Node</text>
+          <!-- Telegram Alert -->
+          <rect x="228" y="18" width="80" height="28" rx="7" fill="#1e2d3d" stroke="#f87171" stroke-width="1.2"/>
+          <text x="268" y="30" text-anchor="middle" fill="#f87171" font-size="8">✈️ Alert</text>
+          <text x="268" y="40" text-anchor="middle" fill="#94a3b8" font-size="6" font-family="monospace">Telegram</text>
+          <!-- GSheets log -->
+          <rect x="228" y="82" width="80" height="28" rx="7" fill="#1e2d3d" stroke="#4ade80" stroke-width="1.2"/>
+          <text x="268" y="94" text-anchor="middle" fill="#4ade80" font-size="8">📊 Log</text>
+          <text x="268" y="104" text-anchor="middle" fill="#94a3b8" font-size="6" font-family="monospace">GSheets</text>
+          <circle cx="40" cy="47" r="4" fill="#38bdf8" opacity="0.9"/>
+          <circle cx="40" cy="47" r="7" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+        </svg>
       </div>
       <h3 class="ar-t">تنبيهات المخزون الذكية</h3>
       <h3 class="en-t">Smart Inventory Alerts</h3>
@@ -1895,7 +2120,7 @@ body.en .back-top { left: auto; right: 2rem; }
   </div>
   <div class="contact-row reveal">
     <a href="https://t.me/FLOWFORG" class="btn-tg" target="_blank">✈️ Telegram</a>
-    <a href="/cdn-cgi/l/email-protection#f1879885909d819085999c90839a9485989f96b1969c90989ddf929e9c" class="btn-mail">📩 Email</a>
+    <a href="/cdn-cgi/l/email-protection#e4928d9085889485908c8985968f81908d8a83a48389858d88ca878b89" class="btn-mail">📩 Email</a>
   </div>
   <div class="cta-guarantees reveal">
     <span class="cta-g">🛡️ <span class="ar-t">بلا التزامات</span><span class="en-t">No commitment</span></span>
@@ -1974,7 +2199,7 @@ body.en .back-top { left: auto; right: 2rem; }
 </footer>
 
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* TELEGRAM PRE-FILLED MESSAGES */
 function tgRequest(arMsg, enMsg) {
   const isEn = document.body.classList.contains('en');
@@ -1999,19 +2224,30 @@ function closeMenu() {
 /* LANGUAGE */
 function setLang(lang) {
   closeMenu();
+  // Update buttons
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   if (lang === 'ar') {
-    document.querySelector('.lang-btn:first-child').classList.add('active');
+    document.querySelectorAll('.lang-btn')[0].classList.add('active');
     document.body.classList.remove('en');
-    document.documentElement.setAttribute('dir','rtl');
-    document.documentElement.setAttribute('lang','ar');
+    document.documentElement.setAttribute('dir', 'rtl');
+    document.documentElement.setAttribute('lang', 'ar');
   } else {
-    document.querySelector('.lang-btn:last-child').classList.add('active');
+    document.querySelectorAll('.lang-btn')[1].classList.add('active');
     document.body.classList.add('en');
-    document.documentElement.setAttribute('dir','ltr');
-    document.documentElement.setAttribute('lang','en');
+    document.documentElement.setAttribute('dir', 'ltr');
+    document.documentElement.setAttribute('lang', 'en');
   }
+  // Save preference
+  try { localStorage.setItem('ff_lang', lang); } catch(e) {}
 }
+
+// Load saved language preference on page load
+(function() {
+  try {
+    const saved = localStorage.getItem('ff_lang');
+    if (saved === 'en') setLang('en');
+  } catch(e) {}
+})();
 
 /* CUSTOM CURSOR — desktop only */
 if (window.matchMedia('(pointer:fine)').matches) {
@@ -2284,12 +2520,9 @@ window.addEventListener('scroll', () => {
       ctx.fillStyle = `rgba(${p.color.join(',')}, ${pulsedAlpha * 1.8})`;
       ctx.fill();
     }
-
-    // Connections
     drawConnections(w, h);
     requestAnimationFrame(animate);
   }
-
   animate();
 })();
 </script>
